@@ -1,0 +1,5 @@
+Tasks include:
+    - collect sentences with swear words in them from a gigaword corpus with the help of Hugging Face's datatrove library
+    - train embeddings on the (whole) data to find words similar to the ones you came up with. Iteratively extract examples from the corpus
+    - create an instruct dataset that recognizes swearing in a text and can create a training corpus for sequence labeling from it
+    - train a BERT-based sequence tagger on the data
