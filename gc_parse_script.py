@@ -46,6 +46,8 @@ def unpack(data):
 
 
 if __name__=='__main__':
-    data_folder = "orlando/"
+    os.nice(32)
+    data_folder = "./data/orlando/Language/Hungarian/Corpus/cc/hu/"
     ext = ".gz"
     res = get_files_recursively(data_folder, ext, parse_cc)
+    res.to_csv("./data/orlando/Projects/Makako/giant_corpus.csv")
