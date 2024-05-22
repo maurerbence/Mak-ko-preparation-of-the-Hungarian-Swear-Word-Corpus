@@ -5,14 +5,12 @@ import os
 from transformers import AutoTokenizer
 from gensim.models import Word2Vec
 from utils import MakakoCorpus
-
+from multiprocessing import cpu_count, Pool
 
 def train_on_gigacorpus(corpus, model_name_str):
 
-    tokenized_text = []
-    for _, tokens in corpus:
-        tokenized_text.append(tokens)
-    model = Word2Vec(tokenized_text, vector_size=100, window=5, min_count=1, sg=1)
+    processes = cpu_count()
+    model = Word2Vec(corpus, vector_size=300, min_count=50, workers=processes-1, epochs=1,)
     print("Building vocabulary...")
     model.build_vocab(corpus)
     print("Training Model...")
@@ -50,12 +48,7 @@ def main():
 
     train_on_gigacorpus(corpus, model_name_str)
 
-    swear_text = extract_sentences_with_swear_words(corpus, corpus.swear_words)
-
-    return swear_text
-
 
 if __name__ == "__main__":
-    swear_docs = main()
-    with open("swear_docs.json", "w") as file:
-        json.dump(swear_docs, file)
+    main()
+
