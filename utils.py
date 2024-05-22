@@ -35,7 +35,7 @@ class MakakoCorpus:
                             document = data.get('text', '')
                             if document:
                                 tokens = self.tokenizer.tokenize(document)
-                                yield document, tokens
+                                yield tokens
 
     @staticmethod
     def contains_swear_word(text: str, swear_words: list):

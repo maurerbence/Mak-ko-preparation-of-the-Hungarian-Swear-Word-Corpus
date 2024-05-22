@@ -10,7 +10,7 @@ from multiprocessing import cpu_count, Pool
 def train_on_gigacorpus(corpus, model_name_str):
 
     processes = cpu_count()
-    model = Word2Vec(corpus, vector_size=300, min_count=50, workers=processes-1, epochs=1,)
+    model = Word2Vec(vector_size=300, min_count=50, workers=processes-1, epochs=1,)
     print("Building vocabulary...")
     model.build_vocab(corpus)
     print("Training Model...")
